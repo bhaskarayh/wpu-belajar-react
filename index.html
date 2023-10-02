@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Belajar React</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const containter = document.getElementById('root');
+        const root = ReactDOM.createRoot(containter);
+
+        root.render(<h1>Belajar React bareng Pa Dhika🚀</h1>);
+        root.render(<>
+            <h1 className="heading">Belajar React Bareng WPU 🚀</h1>
+            <p onClick={e => { alert('ok!') }} >Belajar react itu mudah dan menyenangkan bukan?!</p>
+        </>);
+
+        // Nama function komponen harus huruf besar
+        function Header({ name }) {
+            return (<h1 className="heading">Belajar React Bareng {name ? name : 'WPU'} 🚀</h1>);
+        }
+
+        // function HomePage() {
+        //     const students = ['Sandhika', 'Doddy', 'Erik'];
+
+        //     const [likes, setLikes] = React.useState(0); // 0 initital value
+
+        //     function handleClick() {
+        //         setLikes(likes + 1);
+        //     }
+
+        //     return (
+        //         <>
+        //             <Header name="Pak Dhika" />
+        //             <ul>
+        //                 {
+        //                     students.map((student) => (
+        //                         <li key={student}>{student}</li>
+        //                     ))
+        //                 }
+        //             </ul>
+
+        //             <button onClick={handleClick}>Like ({likes})</button>
+        //         </>
+        //     );
+        // }
+
+        function Button({ text, onClick, counter }) {
+            const myStyle = (text !== 'reset') ? {} : { margin: 20, display: 'block' };
+
+            console.log({ counter })
+            const disabledNumber = () => {
+                if (text !== 'reset' && counter === 'done!') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            return (
+                <button onClick={onClick} style={myStyle} disabled={disabledNumber()}>{text}</button>
+            );
+        }
+
+
+        function HomePage() {
+            const [count, setCount] = React.useState(0);
+
+            // function handleClickCounter() {
+            //     console.log(parameter);
+            // }
+
+            // function handleClickPlus() {
+            //     setCount(count + 1);
+            // }
+            // function handleClickMinus() {
+            //     setCount(count - 1);
+            // }
+            // function handleClickReset() {
+            //     setCount(0);
+            // }
+
+            const handleClick = (e) => {
+                e.preventDefault();
+                // console.log({ countBefore: count });
+                // console.log(e);
+                if (count > 10) {
+                    e.target
+                }
+
+
+                switch (e.target.textContent) {
+                    case "+":
+                        (count < 9) ? setCount(count + 1) : setCount('done!');
+
+                        break;
+                    case "-":
+                        (count > 0) ? setCount(count - 1) : setCount('done!');
+                        break;
+                    case "reset":
+                        setCount(0);
+                        break;
+                    default:
+                        alert('Salah Tombol');
+                }
+
+                // console.log({ countAfter: count });
+
+            }
+
+            // return (
+            //     <>
+            //         <button onClick={handleClickMinus}>-</button> <text>{count}</text> <button onClick={handleClickPlus}>+</button> <br></br >
+            //         <button onClick={handleClickReset}>reset</button>
+            //     </>
+            // );
+            // return (
+            //     <>
+            //         <button onClick={handleClick} disabled={count === 'done!'}>-</button> <text>{count}</text> <button onClick={handleClick} disabled={count === 'done!'}>+</button> <br></br >
+            //         <button onClick={handleClick} disabled={count === 0}>reset</button>
+            //     </>
+            // );
+            return (
+                <>
+                    <Button text={'-'} onClick={handleClick} counter={count} /> <span style={{ margin: 20 }}>{count}</span >   <Button text={'+'} onClick={handleClick} counter={count} />
+                    <Button text={'reset'} onClick={handleClick} />
+                </>
+            );
+        }
+
+
+        /* Punya Pak Dhika */
+        // function MyButton({ text, onClick, counter }) {
+
+        //     const myStyle = (text !== 'Reset!') ? {} : { margin: 20, display: 'block' };
+
+
+        //     return (
+        //         <button onClick={onClick} style={myStyle}>
+        //             {text}
+        //         </button>
+        //     );
+        // }
+
+        // function MyCounter({ counter }) {
+        //     return (
+        //         <span style={{ margin: 20 }}>{counter}</span>
+        //     )
+        // }
+
+        // function HomePage() {
+        //     const [counter, setCounter] = React.useState(0);
+
+        //     function increment() {
+        //         setCounter(counter + 1);
+        //     }
+
+        //     function decrement() {
+        //         setCounter(counter - 1);
+        //     }
+
+        //     function reset() {
+        //         setCounter(0);
+        //     }
+
+        //     return (
+        //         <div>
+        //             <MyButton text={'-'} onClick={decrement} counter={counter} />
+        //             <MyCounter counter={counter} />
+        //             <MyButton text={'+'} onClick={increment} counter={counter} />
+        //             <MyButton text={'Reset!'} onClick={reset} counter={counter} />
+        //         </div>
+        //     );
+        // }
+
+        root.render(<HomePage />)
+    </script>
+</body>
+
+</html>
