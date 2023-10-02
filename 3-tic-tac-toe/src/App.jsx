@@ -162,11 +162,7 @@ function calculateWinner(squares) {
         const [a, b, c] = lines[i]
         // ['X', 'X', 'X', 'O', 'O', null, null, null, null]
 
-        if (
-            squares[a] &&
-            squares[a] === squares[b] &&
-            squares[a] === squares[c]
-        ) {
+        if (squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a]
         }
     }
